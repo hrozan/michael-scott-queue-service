@@ -1,23 +1,23 @@
 import Debug from "debug"
+import { LinkedList } from "./linkedList"
 
 const debug = Debug("msqs:queue")
 
 export class Queue {
-  items: Array<object>
+  list: LinkedList
 
   constructor() {
-    this.items = []
+    this.list = new LinkedList()
   }
 
   enqueue(item: object) {
-    this.items = [...this.items, item]
-    debug(`➕ item enqueued, queue length ${this.items.length}`)
+    this.list.append(item)
+    debug(`➕ item enqueued, queue length ${this.list.length}`)
   }
 
   dequeue() {
-    const [item, ...rest] = this.items
-    this.items = rest
-    debug(`➖ item dequeued, queue length ${this.items.length}`)
-    return item
+    const item = this.list.removeHead()
+    debug(`➖ item dequeued, queue length ${this.list.length}`)
+    return item?.value
   }
 }

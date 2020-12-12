@@ -30,7 +30,7 @@ export const createMSQSClient = (connectionString?: string): Promise<MSQSClient>
         debug("consume message")
         socket.emit(Events.Consume)
 
-        socket.on("return-consume-message", (payload: Object) => {
+        socket.on(Events.ConsumeReturn, (payload: Object) => {
           debug("message return")
           resolve(payload)
         })

@@ -48,7 +48,7 @@ export const startMSQSServer = (config: MSQSServerConfig): Promise<MSQSServer> =
 
       const onMessageConsume = () => {
         const payload = queue.dequeue()
-        io.emit("return-consume-message", payload)
+        io.emit(Events.ConsumeReturn, payload)
       }
 
       io.on("connection", (socket: Socket) => {
