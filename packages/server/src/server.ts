@@ -42,7 +42,7 @@ export const startMSQSServer = (config: MSQSServerConfig): Promise<MSQSServer> =
       }
 
       const onMessageReceived = (payload: Object) => {
-        debug(`✉  message received on ${Date.now()}`)
+        debug(`message received on ${Date.now()}`)
         queue.enqueue(payload)
       }
 
@@ -58,7 +58,7 @@ export const startMSQSServer = (config: MSQSServerConfig): Promise<MSQSServer> =
 
       httpServer.on("error", (err) => reject(err))
       httpServer.listen(config.port, () => {
-        debug(`🖥  listening on port: ${config.port}`)
+        debug(`listening on port: ${config.port}`)
         resolve(server)
       })
     }

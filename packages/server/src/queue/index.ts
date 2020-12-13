@@ -12,12 +12,12 @@ export class Queue {
 
   enqueue(item: object) {
     this.list.append(item)
-    debug(`➕ item enqueued, queue length ${this.list.length}`)
+    debug(`item enqueued, queue length ${this.list.length}`)
   }
 
   dequeue() {
     const item = this.list.removeHead()
-    debug(`➖ item dequeued, queue length ${this.list.length}`)
+    debug(`item dequeued, queue length ${this.list.length}`)
     return item?.value
   }
 }

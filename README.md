@@ -11,9 +11,9 @@ The Micheal Scott Queue Service is a simple queue service for web application, m
 
 ## :rocket: Getting Started
 
-[Server](./server/README.md)
+[Server](./packages/server/README.md)
 
-[Dashboard](dash/README.md)
+[Dashboard](./packages/dash/README.md)
 
 ### :page_facing_up: License
 
