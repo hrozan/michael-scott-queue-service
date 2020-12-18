@@ -21,7 +21,7 @@ export const startMSQSServer = (config: MSQSServerConfig): Promise<MSQSServer> =
     {
       const httpServer = createServer()
       const io = new Server(httpServer, {})
-      const queue = new Queue()
+      const queue = new Queue<object>()
 
       const close = () =>
         new Promise((resolve, reject) => {

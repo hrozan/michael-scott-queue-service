@@ -1,5 +1,9 @@
 import { Queue } from "../index"
 import { LinkedList } from "../linkedList"
+import { ListNode } from "../listNode"
+
+const mockedItem = { message: "Lorem ipsum dolor" }
+const generateMockedMessage = () => ({ ...mockedItem })
 
 describe("Queue", () => {
   it("should queue one item ", async () => {
@@ -10,7 +14,7 @@ describe("Queue", () => {
     expect(queue.list.length).toBe(1)
   })
 
-  it("should dequeue one item from queue", async () => {
+  it("should dequeue one item", async () => {
     const item = { value: 1 }
     const queue = new Queue()
     queue.enqueue(item)
@@ -23,24 +27,35 @@ describe("Queue", () => {
 
 describe("Linked List", () => {
   it("should append a item", async () => {
-    const item = { message: "Lorem ipsum dolor" }
+    const item = generateMockedMessage()
     const list = new LinkedList()
 
-    list.append({ ...item })
-    list.append({ ...item })
+    for (let i = 0; i <= 5; i++) {
+      list.append(generateMockedMessage())
+    }
+
     list.append(item)
 
     expect(list.tail?.value).toBe(item)
   })
 
-  it("should prepend a item", async () => {
-    const item = { message: "Lorem ipsum dolor" }
+  it("should append 5 items e check length", async () => {
     const list = new LinkedList()
+    const count = 10
 
-    list.append({ ...item })
-    list.append({ ...item })
-    list.prepend(item)
+    for (let i = 0; i < count; i++) {
+      list.append(generateMockedMessage())
+    }
 
-    expect(list.head?.value).toBe(item)
+    expect(list.length).toBe(count)
+  })
+})
+
+describe("List Node", () => {
+  it("should create 2 list node and link them", async () => {
+    const node1 = new ListNode({ message: "test" })
+    const node2 = new ListNode({ message: "test" }, node1)
+
+    expect(node2.next).toBe(node1)
   })
 })

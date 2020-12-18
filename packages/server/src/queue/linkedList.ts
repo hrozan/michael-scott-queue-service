@@ -1,8 +1,8 @@
 import { ListNode } from "./listNode"
 
-export class LinkedList {
-  head: ListNode | null
-  tail: ListNode | null
+export class LinkedList <T>{
+  head: ListNode<T> | null
+  tail: ListNode<T> | null
   length = 0
 
   constructor() {
@@ -10,21 +10,7 @@ export class LinkedList {
     this.tail = null
   }
 
-  prepend(value: object) {
-    // Make new node to be a head.
-    const newNode = new ListNode(value, this.head)
-    this.head = newNode
-    this.length++
-
-    // If there is no tail yet let's make new node a tail.
-    if (!this.tail) {
-      this.tail = newNode
-    }
-
-    return this
-  }
-
-  append(value: object) {
+  append(value: T) {
     const newNode = new ListNode(value)
 
     // If there is no head yet let's make new node a head.

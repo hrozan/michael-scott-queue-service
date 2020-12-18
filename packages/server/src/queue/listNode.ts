@@ -1,8 +1,8 @@
-export class ListNode {
-  value: object
-  next: ListNode | null
+export class ListNode<T> {
+  value: T
+  next: ListNode<T> | null
 
-  constructor(value: object, next: ListNode | null = null) {
+  constructor(value: T, next: ListNode<T> | null = null) {
     this.value = value
     this.next = next
   }
