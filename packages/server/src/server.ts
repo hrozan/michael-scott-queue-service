@@ -1,7 +1,7 @@
 import Debug from "debug"
 import { createServer, Server as HttpServer } from "http"
 import { Server, Socket } from "socket.io"
-import { Queue } from "./queue"
+import { createQueue, dequeue, enqueue } from "./queue"
 import { Events } from "@msqs/core"
 
 const debug = Debug("msqs:server")
@@ -21,7 +21,7 @@ export const startMSQSServer = (config: MSQSServerConfig): Promise<MSQSServer> =
     {
       const httpServer = createServer()
       const io = new Server(httpServer, {})
-      const queue = new Queue<object>()
+      const queue = createQueue<object>()
 
       const close = () =>
         new Promise((resolve, reject) => {
@@ -43,11 +43,11 @@ export const startMSQSServer = (config: MSQSServerConfig): Promise<MSQSServer> =
 
       const onMessageReceived = (payload: Object) => {
         debug(`message received on ${Date.now()}`)
-        queue.enqueue(payload)
+        enqueue(queue, payload)
       }
 
       const onMessageConsume = () => {
-        const payload = queue.dequeue()
+        const payload = dequeue(queue)
         io.emit(Events.ConsumeReturn, payload)
       }
 

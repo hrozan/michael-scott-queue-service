@@ -33,7 +33,7 @@
     "typescript": "^4.0.5"
   },
   "dependencies": {
-    "@msqs/core": "^1.0.0",
+    "@msqs/core": "^1.0.1",
     "debug": "^4.3.1",
     "dotenv": "^8.2.0",
     "module-alias": "^2.2.2",

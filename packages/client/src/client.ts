@@ -14,12 +14,10 @@ export const createMSQSClient = (connectionString?: string): Promise<MSQSClient>
     const socket = io(connectionString || "http://localhost:2307")
     socket.connect()
 
-    // Events
     socket.on("connection", () => {
       debug("client connected")
     })
 
-    // Methods
     const sendMessage = (payload: any) => {
       debug(`sending message`)
       socket.emit(Events.Send, payload)

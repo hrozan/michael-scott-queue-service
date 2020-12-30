@@ -5,10 +5,10 @@
     "bootstrap": "lerna bootstrap",
     "dev": "lerna run --scope={@msqs/server,@msqs/client-cli} dev --stream",
     "dev:server": "cd ./packages/server && npm run dev",
-    "dev:client-cli": "cd ./packages/client-cli && npm run dev",
+    "dev:client": "cd packages/client && npm run dev",
     "test": "lerna run test",
     "test:server": "cd ./packages/server && npm test",
-    "test:client-cli": "cd ./packages/client-cli && npm test",
+    "test:client": "cd packages/client && npm test",
     "test:client-ui": "cd ./packages/client-ui && npm test",
     "test:dash": "cd ./packages/dash && npm test",
     "test:core": "cd ./packages/core && npm test"
