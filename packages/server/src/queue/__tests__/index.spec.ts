@@ -1,5 +1,5 @@
 import { createQueue, dequeue, enqueue, Queue } from "../index"
-import { append, createLinkedList } from "../linkedList"
+import { appendToList, createLinkedList } from "../linkedList"
 import { createLinkedListNode } from "../linkedListNode"
 
 const mockedItem = { message: "Lorem ipsum dolor" }
@@ -7,17 +7,21 @@ const generateMockedMessage = () => ({ ...mockedItem })
 
 describe("Queue", () => {
   it("should queue one item ", async () => {
-    const queue = createQueue()
+    const queue = createQueue<object>()
 
-    enqueue(queue, { value: 1 })
+    const enqueueItem = enqueue(queue)
+
+    enqueueItem({ value: 1 })
 
     expect(queue.list.length).toBe(1)
   })
 
   it("should dequeue one item", async () => {
     const item = { value: 1 }
-    const queue = createQueue()
-    enqueue(queue, item)
+    const queue = createQueue<object>()
+
+    const enqueueItem = enqueue(queue)
+    enqueueItem(item)
 
     const result = dequeue(queue)
 
@@ -30,21 +34,24 @@ describe("Linked List", () => {
     const item = generateMockedMessage()
     const list = createLinkedList()
 
+    const append = appendToList(list)
+
     for (let i = 0; i <= 5; i++) {
-      append(list, generateMockedMessage())
+      append(generateMockedMessage())
     }
 
-    append(list, item)
+    append(item)
 
     expect(list.tail?.value).toBe(item)
   })
 
   it("should append 5 items e check length", async () => {
     const list = createLinkedList()
-    const count = 10
+    const count = 5
 
+    const append = appendToList(list)
     for (let i = 0; i < count; i++) {
-      append(list, generateMockedMessage())
+      append(generateMockedMessage())
     }
 
     expect(list.length).toBe(count)

@@ -1,5 +1,5 @@
 import Debug from "debug"
-import { append, createLinkedList, LinkedList, removeFromHead } from "./linkedList"
+import { appendToList, createLinkedList, LinkedList, removeFromHead } from "./linkedList"
 
 const debug = Debug("msqs:queue")
 
@@ -12,8 +12,9 @@ export const createQueue = <T>(): Queue<T> => {
   return { list: createLinkedList<T>() }
 }
 
-export const enqueue = <T>(queue: Queue<T>, item: T): Queue<T> => {
-  queue.list = append(queue.list, item)
+export const enqueue = <T>(queue: Queue<T>) => (item: T): Queue<T> => {
+  const append = appendToList(queue.list)
+  queue.list = append(item)
   debug(`enqueue item ${queue.list.length}`)
   return queue
 }

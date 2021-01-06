@@ -10,7 +10,7 @@ export const createLinkedList = <T>(): LinkedList<T> => {
   return { length: 0 }
 }
 
-export const append = <T>(list: LinkedList<T>, value: T): LinkedList<T> => {
+export const appendToList = <T>(list: LinkedList<T>) => (value: T): LinkedList<T> => {
   const newNode = createLinkedListNode(value)
 
   // If there is no head yet let's make new node a head.

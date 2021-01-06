@@ -43,7 +43,8 @@ export const startMSQSServer = (config: MSQSServerConfig): Promise<MSQSServer> =
 
       const onMessageReceived = (payload: Object) => {
         debug(`message received on ${Date.now()}`)
-        enqueue(queue, payload)
+        const enqueueItem = enqueue(queue)
+        enqueueItem(payload)
       }
 
       const onMessageConsume = () => {
